@@ -1,0 +1,419 @@
+/* ===================================
+   MODERN 2025 STATUS PANEL DESIGN
+   =================================== */
+
+/* Panel Container */
+.loan-status-panel {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(247, 250, 252, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Grid Layout for Side-by-Side Cards */
+.status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Base Card Styling */
+.status-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(31, 103, 175, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.04),
+        0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.status-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+    border-color: rgba(31, 103, 175, 0.2);
+}
+
+/* Card Title */
+.status-card-title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #1F67AF;
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.65rem;
+    border-bottom: 2px solid rgba(31, 103, 175, 0.1);
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Summary Grid */
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.65rem;
+    background: linear-gradient(135deg, rgba(247, 250, 252, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%);
+    border-radius: 8px;
+    border: 1px solid rgba(224, 224, 224, 0.4);
+    transition: all 0.2s ease;
+}
+
+.summary-item:hover {
+    background: linear-gradient(135deg, rgba(232, 244, 253, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%);
+    border-color: rgba(31, 103, 175, 0.3);
+}
+
+.summary-item.highlight {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #1F67AF 0%, #1A5592 100%);
+    border: none;
+    box-shadow: 0 4px 12px rgba(31, 103, 175, 0.25);
+}
+
+.summary-label {
+    font-size: 0.625rem;
+    color: #666666;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.summary-item.highlight .summary-label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.summary-value {
+    font-size: 0.875rem;
+    color: #000000;
+    font-weight: 700;
+}
+
+.summary-value-large {
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Workflow Progress */
+.workflow-progress {
+    margin-top: 0.5rem;
+}
+
+.progress-bar-container {
+    height: 8px;
+    background: rgba(224, 224, 224, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #D7DB29 0%, #1F67AF 100%);
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(215, 219, 41, 0.4);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.85;
+    }
+}
+
+.progress-text {
+    font-size: 0.6875rem;
+    color: #1F67AF;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* Agents Grid */
+.agents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.agent-item {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem;
+    background: rgba(250, 250, 250, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid rgba(224, 224, 224, 0.4);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agent-item.active {
+    background: linear-gradient(135deg, rgba(232, 244, 253, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+    border-color: #1F67AF;
+    box-shadow: 0 3px 12px rgba(31, 103, 175, 0.2);
+    transform: scale(1.02);
+}
+
+.agent-item.completed {
+    background: linear-gradient(135deg, rgba(240, 249, 244, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+    border-color: #4caf50;
+}
+
+.agent-item.pending {
+    opacity: 0.5;
+}
+
+.agent-icon-mini {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1F67AF 0%, #1A5592 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin-right: 0.65rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(31, 103, 175, 0.3);
+}
+
+.agent-item.completed .agent-icon-mini {
+    background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.agent-item.pending .agent-icon-mini {
+    background: linear-gradient(135deg, #BDBDBD 0%, #9E9E9E 100%);
+    box-shadow: 0 2px 8px rgba(189, 189, 189, 0.2);
+}
+
+.agent-info-mini {
+    flex: 1;
+    min-width: 0;
+}
+
+.agent-name-mini {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 0.15rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.agent-desc-mini {
+    font-size: 0.5625rem;
+    color: #666666;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.agent-badge {
+    font-size: 0.875rem;
+    padding: 0.2rem 0.35rem;
+    border-radius: 6px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.agent-badge.active {
+    color: #1F67AF;
+    animation: pulse-badge 2s infinite;
+}
+
+.agent-badge.completed {
+    color: #4caf50;
+}
+
+.agent-badge.pending {
+    color: #BDBDBD;
+}
+
+@keyframes pulse-badge {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Approval Card */
+.approval-card {
+    background: linear-gradient(135deg, rgba(240, 249, 244, 1) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border: 2px solid #4caf50;
+    margin-top: 0.75rem;
+    animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.approval-content {
+    text-align: center;
+}
+
+.approval-icon-large {
+    margin: 0 auto 0.75rem;
+    width: 64px;
+    height: 64px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 8px 24px rgba(76, 175, 80, 0.3),
+        0 0 0 8px rgba(76, 175, 80, 0.1);
+    animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.approval-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #4caf50;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.3px;
+}
+
+.approval-desc {
+    font-size: 0.8125rem;
+    color: #666666;
+    margin: 0 0 1rem 0;
+}
+
+.download-button-modern {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #1F67AF 0%, #1A5592 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 4px 16px rgba(31, 103, 175, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.3px;
+}
+
+.download-button-modern:hover {
+    background: linear-gradient(135deg, #1A5592 0%, #154680 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(31, 103, 175, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.download-button-modern:active {
+    transform: translateY(0);
+}
+
+.download-button-modern svg {
+    flex-shrink: 0;
+}
+
+/* Scrollbar */
+.loan-status-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.loan-status-panel::-webkit-scrollbar-track {
+    background: rgba(245, 245, 245, 0.3);
+    border-radius: 10px;
+}
+
+.loan-status-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(31, 103, 175, 0.6) 0%, rgba(26, 85, 146, 0.6) 100%);
+    border-radius: 10px;
+}
+
+.loan-status-panel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #1F67AF 0%, #1A5592 100%);
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+    .status-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .summary-item.highlight {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .loan-status-panel {
+        padding: 0.75rem;
+    }
+
+    .agents-grid {
+        grid-template-columns: 1fr;
+    }
+}

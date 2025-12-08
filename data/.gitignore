@@ -1,0 +1,8 @@
+# Secure data storage - Do not commit sensitive files
+data/
+data/sanction_letters/
+*.pdf
+
+# But keep the directory structure
+!data/.gitkeep
+!data/sanction_letters/.gitkeep
