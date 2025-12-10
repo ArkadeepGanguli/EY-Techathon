@@ -8,7 +8,7 @@
             "phone": "9876543210",
             "email": "rajesh.kumar@example.com",
             "credit_score": 780,
-            "monthly_salary": 85000,
+            "monthly_salary": 50000,
             "current_loans": 1,
             "pre_approved_limit": 300000,
             "kyc_status": "verified",
