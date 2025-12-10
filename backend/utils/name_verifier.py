@@ -56,10 +56,10 @@ Consider:
 - Common spelling variations
 - Nicknames vs formal names
 
-Respond in this exact JSON format:
+IMPORTANT: Respond ONLY with valid JSON in this exact format (no markdown, no code blocks, no extra text):
 {{
-    "match": true/false,
-    "confidence": 0.0-1.0,
+    "match": true,
+    "confidence": 0.95,
     "reason": "brief explanation"
 }}"""
 
@@ -72,7 +72,7 @@ Respond in this exact JSON format:
                 "Content-Type": "application/json"
             },
             json={
-                "model": "openai/gpt-oss-20b:free",
+                "model": "meta-llama/llama-3.3-70b-instruct:free",  # Reliable free model
                 "messages": [
                     {
                         "role": "user",
@@ -96,10 +96,34 @@ Respond in this exact JSON format:
         import json
         import re
         
-        # Extract JSON from response (handle markdown code blocks)
-        json_match = re.search(r'\{.*\}', ai_response, re.DOTALL)
+        # Try multiple extraction methods
+        parsed = None
+        
+        # Method 1: Extract from markdown code blocks
+        json_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', ai_response, re.DOTALL)
         if json_match:
-            parsed = json.loads(json_match.group())
+            try:
+                parsed = json.loads(json_match.group(1))
+            except json.JSONDecodeError:
+                pass
+        
+        # Method 2: Extract plain JSON object
+        if not parsed:
+            json_match = re.search(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', ai_response, re.DOTALL)
+            if json_match:
+                try:
+                    parsed = json.loads(json_match.group())
+                except json.JSONDecodeError:
+                    pass
+        
+        # Method 3: Try parsing the entire response as JSON
+        if not parsed:
+            try:
+                parsed = json.loads(ai_response.strip())
+            except json.JSONDecodeError:
+                pass
+        
+        if parsed and isinstance(parsed, dict):
             return {
                 'match': bool(parsed.get('match', False)),
                 'confidence': float(parsed.get('confidence', 0.5)),
@@ -107,11 +131,11 @@ Respond in this exact JSON format:
             }
         else:
             # Fallback if JSON parsing fails
-            print("[Name Verification] Failed to parse AI response")
+            print(f"[Name Verification] Failed to parse AI response. Raw response: {ai_response[:200]}")
             return {
                 'match': False,
                 'confidence': 0.0,
-                'reason': 'Could not parse AI response'
+                'reason': f'Could not parse AI response. Raw: {ai_response[:100]}'
             }
             
     except requests.exceptions.RequestException as e:
