@@ -36,7 +36,7 @@ A cutting-edge multi-agent AI system for personal loan processing, built for NBF
 ### 🎨 Premium Tata Capital UI/UX
 - 🏢 **Professional Branding**: Official Tata Capital color palette (#1F67AF blue, #D7DB29 yellow)
 - 📐 **Two-Column Layout**: Chat interface (left) + Real-time status panel (right)
-- 💎 **Modern Design**: Glassmorphism effects, gradient backgrounds, premium dark mode
+- 💎 **Modern Design**: Gradient backgrounds, premium dark mode
 - ✨ **Micro-Animations**: Smooth transitions, hover effects, pulsing badges
 - 📱 **Fully Responsive**: Desktop, tablet, and mobile optimized
 - 🔄 **Real-Time Updates**: Live agent status dashboard and loan application tracker
@@ -152,7 +152,7 @@ EY Techathon/
 
 ```bash
 # Just run:
-start.bat
+./start.bat
 ```
 
 The script will launch two terminal windows (backend + frontend) and automatically open `http://localhost:3000` in your browser.
@@ -195,7 +195,7 @@ npm install
 
 #### Option 1: Quick Start Script (Windows)
 ```bash
-start.bat
+./start.bat
 ```
 
 #### Option 2: Manual Start
@@ -491,7 +491,7 @@ For production deployment, additionally implement:
 
 ### Quick Start Script Issues (Windows)
 
-**start.bat fails**
+**If start.bat fails:**
 - Run as Administrator if permission denied
 - Check Python and Node are in system PATH
 - Manually run commands one by one to identify issue
@@ -509,13 +509,11 @@ For more detailed information, please refer to:
 - **`SANCTION_LETTER_IMPLEMENTATION.md`** - PDF generation implementation guide
 - **`UI_UPDATE_NOTES.md`** - Two-column layout and UI enhancements
 - **`QUICK_START.md`** - Fast setup guide
-- **`PRESENTATION_QA.md`** - Common questions and answers
 
 ## 👥 Support & Contact
 
 For questions, issues, or contributions:
 - Review the troubleshooting section above
-- Check the interactive API docs at `http://localhost:8000/docs`
 - Refer to the comprehensive `EXECUTIVE_SUMMARY.md` for business context
 
 ---
